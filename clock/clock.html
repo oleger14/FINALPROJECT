@@ -18,7 +18,7 @@
             let seconds = time.getSeconds();
              // Нормализация времени, если больше 12
              hours = hours >= 12 ? hours - 12 : hours;
-
+            
             canvas.save();
             // Очищаем полотно от того, что было раньше
             canvas.clearRect(0, 0, 200, 200);
@@ -40,7 +40,7 @@
                 canvas.save();
                 canvas.beginPath();
                 canvas.strokeStyle = "#1122FA";
-                canvas.arc(0, 0, 140, 0, Math.PI * 2, true);
+                canvas.arc(0, 0, 135, 0, Math.PI * 2, true);
                 canvas.stroke();
                 canvas.restore();
             }
@@ -78,6 +78,7 @@
                 canvas.restore();
             }
 
+
             function drawArrowSeconds()
             {
                 canvas.save();
@@ -92,10 +93,41 @@
                 canvas.restore();
             }
 
+            function drawArrowMinutes()
+            {
+                canvas.save();
+                canvas.lineWidth = 4;
+                canvas.strokeStyle = "#1122FA";
+                canvas.fillStyle = "#DD0000";
+                canvas.rotate((minutes * Math.PI) / 30) + (seconds * Math.PI / (30 * 60));
+                canvas.beginPath();
+                canvas.moveTo( -30, 0);
+                canvas.lineTo(100, 0);
+                canvas.stroke();
+                canvas.restore();  
+            }
+
+            function drawArrowHours()
+            {
+                canvas.save();
+                canvas.lineWidth = 8;
+                canvas.strokeStyle = "#1122FA";
+                canvas.fillStyle = "#DD0000";
+                canvas.rotate((hours * Math.PI) / 6) + ((minutes * Math.PI) / 30) + (seconds * Math.PI / (30 * 60));
+                canvas.beginPath();
+                canvas.moveTo( -30, 0);
+                canvas.lineTo(80, 0);
+                canvas.stroke();
+                canvas.restore();
+            }
+
+
             aroundClock();
             drawHours();
             drawMinutes();
             drawArrowSeconds();
+            drawArrowMinutes();
+            drawArrowHours();
             canvas.restore();
             
             requestAnimationFrame(drawClock);
