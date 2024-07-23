@@ -113,6 +113,7 @@
                 canvas.lineWidth = 8;
                 canvas.strokeStyle = "#1122FA";
                 canvas.fillStyle = "#DD0000";
+                canvas.lineCap = "round";
                 canvas.rotate((hours * Math.PI) / 6) + ((minutes * Math.PI) / 30) + (seconds * Math.PI / (30 * 60));
                 canvas.beginPath();
                 canvas.moveTo( -30, 0);
