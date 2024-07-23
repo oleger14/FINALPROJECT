@@ -4,18 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   jquery/3.0.0/jq <script src="https://cdnjs.cloudflare.com/ajax/libs/uery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+<style>
+  textarea {
+	width: 100%;
+	resize: none;
+}
+
+/* Ставим кнопку по центру */
+
+.content {
+	text-align: center;
+}
+
+/* Стили для нашей кнопки */
+
+button {
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+}
+
+button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+
+button:focus {
+	outline: none !important
+}
+
+/* Стили для содержимого popup окна */
+
+input, textarea {
+	color: #494949;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 14px;
+    margin: 0 0 10px;
+	padding: 5px;
+    width: 100%;
+	font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+}
+
+input:focus {
+	border-color: #808080;
+	outline: none;
+}
+
+textarea:focus {
+	border-color: #808080;
+	outline: none;
+}
+
+/* Кнопка */
+
+.blue_btn {
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+
+/* Окно */
+
+.overlay_popup {
+  transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+	display:none;
+	position:fixed;
+	z-index: 999;
+	top:0;
+	right:0; 
+	left:0;
+	bottom:0;
+	background:#000; 
+	opacity:0.5;
+  
+}
+
+.popup {
+	display: none;
+	position: relative;
+	z-index: 1000;
+	margin:0 25% 0 25%;
+	width:50%;
+  transition: opacity 1s linear, visibility 1s linear;
+}
+
+/* Ещё немного стилей для popup окна */
+
+.object{
+	width: 500px;
+	height: 500px;
+	background-color: #eee;
+	padding: 50px 70px;
+}
+
+</style>
 <body>
-    <div id="ex1" class="modal">
-        <p>Thanks for clicking. That felt good.</p>
-        <a href="#" rel="modal:close">Close</a>
-      </div>
       
-      <!-- Link to open the modal -->
-      <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
-        <script>
-        
-        </script>
+	
+	<div class="content">
+
+		<button class="show_popup blue_btn" rel="popup1">Отправить письмо</button>
+
+
+	</div>
+	
+	<div class="overlay_popup"></div>
+
+	<div class="popup" id="popup1">
+		<div class="object">
+			<form action= "" method= ""> 
+				<p>Имя: </p>
+				<p><input type= "text" name= "name"></p> 
+				<p>E-mail: </p><p> <input type= "text" name= "email"></p> 
+				<p>Сообщение: </p>
+				<p><textarea rows= "10" cols= "45" name= "message"></textarea></p> 
+				<input type= "submit" value= "Отправить">
+			</form>
+		</div>
+	</div>
+
+
+	
+
+
+
+	
+	<script>
+   $('.show_popup').click(function() { // Вызываем функцию по нажатию на кнопку 
+    var popup_id = $('#' + $(this).attr("rel")); // Связываем rel и popup_id 
+    $(popup_id).show(); // Открываем окно
+    $('.overlay_popup').show(); // Открываем блок заднего фона
+    }) 
+    $('.overlay_popup').click(function() { // Обрабатываем клик по заднему фону
+        $('.overlay_popup, .popup').hide(); // Скрываем затемнённый задний фон и основное всплывающее окно
+        setTimeout(()=>{overllay_popup.sytyle.opacity = 5;},8);
+    });
+    
+  </script>
+
+       
 </body>
 </html>
