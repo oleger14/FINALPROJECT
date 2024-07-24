@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form">
+        <input type="Email" class="form-control " id="NAME" name="NAME" placeholder="Name"   autocomplete="false" onkeypress ="return /[a-z]/i.test(event.key)" required accesskey="4"/>  
+     </div>
+     
+    <div class="form-group">
+       <input type="Email" class="form-control " id="EMAILADDRESS" name="EMAILADDRESS" placeholder="Email Address"   autocomplete="false" onkeypress2 ="return /[a-z .@ 0-9]/i.test(event.key)" required accesskey="4"/> 
+       <script>
+         
+        document.onkeypress = function(evt) {
+        evt = evt || window.event;
+        var charCode = evt.which || evt.keyCode;
+        var charStr = String.fromCharCode(charCode);
+        if (/[a-z]/i.test(charStr)) {
+            alert("Letter or number typed");
+        }
+        };
+        document.onkeypress2 = function(evt) {
+        evt = evt || window.event;
+        var charCode = evt.which || evt.keyCode;
+        var charStr = String.fromCharCode(charCode);
+        if (/[a-z0-9]/i.test(charStr)) {
+            alert("Letter or number typed");
+        }
+        };
+
+       </script> 
+    </div>
+    
+</body>
+</html>
