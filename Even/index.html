@@ -7,11 +7,13 @@
 </head>
 <body>
     <div class="form">
-        <input type="Email" class="form-control " id="NAME" name="NAME" placeholder="Name"   autocomplete="false" onkeypress ="return /[a-z]/i.test(event.key)" required accesskey="4"/>  
+        <input type="Email" class="form-control " id="NAME" name="NAME" placeholder="Name"   autocomplete="false" onkeypress ="return /[a-z]/i.test(event.key)" required accesskey="4"/>
+        <div id="send"></div>  
      </div>
      
     <div class="form-group">
        <input type="Email" class="form-control " id="EMAILADDRESS" name="EMAILADDRESS" placeholder="Email Address"   autocomplete="false" onkeypress2 ="return /[a-z .@ 0-9]/i.test(event.key)" required accesskey="4"/> 
+    </div>
        <script>
          
         document.onkeypress = function(evt) {
@@ -19,12 +21,13 @@
         var charCode = evt.which || evt.keyCode;
         var charStr = String.fromCharCode(charCode);
         if (/[a-z]/i.test(charStr)) {
-            alert("Letter or number typed");
+            // alert("Letter or number typed");
+            document.getElementById('send').innerHTML = "Фамилия"
         }
         };
-        document.onkeypress2 = function(evt) {
-        evt = evt || window.event;
-        var charCode = evt.which || evt.keyCode;
+        document.onkeypress2 = function(evti) {
+        evti = evti || window.event;
+        var charCode = evti.which || evti.keyCode;
         var charStr = String.fromCharCode(charCode);
         if (/[a-z0-9]/i.test(charStr)) {
             alert("Letter or number typed");
