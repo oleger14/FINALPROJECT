@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pokedes {
+          display: inline-block;
+          cursor: pointer;
+          margin: 0;
+        }
+        #pokedes:focus {
+          outline: 1px dashed  white;
+          background: rgb(33, 237, 14);
+          border-radius: 50%;
+          padding: 8px;
+        }
+        #text{
+            cursor: pointer;
+        }
+       
+      </style>
+</head>
+<body class="body">
+    <p id="text">Кликните по "изображению" и перемещайте его с помощью клавиш со стрелками.</p>
+    <img src="./pokedes.png" alt="" id="pokedes" style="width: 160px;">
+    <script>
+        pokedes.tabIndex = 0;
+    
+        pokedes.onclick = function() {
+          this.style.left = this.getBoundingClientRect().left + 'px';
+          this.style.top = this.getBoundingClientRect().top + 'px';
+            alert('Вы уверены ,что хотите меня передвинуть?');
+            document.getElementById('text').innerText = 'Начинай двигать или кликни на текст чтобы обновить!';
+            document.getElementById('text').style.color = 'red';
+            this.style.position = 'fixed';
+        };
+    
+    
+        pokedes.onkeydown = function(e) {
+          switch (e.key) {
+            case 'ArrowLeft':
+              this.style.left = parseInt(this.style.left) - this.offsetWidth + 'px';
+              return false;
+            case 'ArrowUp':
+              this.style.top = parseInt(this.style.top) - this.offsetHeight + 'px';
+              return false;
+            case 'ArrowRight':
+              this.style.left = parseInt(this.style.left) + this.offsetWidth + 'px';
+              return false;
+            case 'ArrowDown':
+              this.style.top = parseInt(this.style.top) + this.offsetHeight + 'px';
+              return false;
+          }
+        };
+        
+        document.addEventListener('click', function (event) {
+        if (event.target.matches('#text')) {
+            location.reload();
+        }
+      }, true)
+      </script>
+</body>
+</html>
