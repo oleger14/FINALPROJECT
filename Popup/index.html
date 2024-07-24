@@ -7,153 +7,81 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <style>
-  textarea {
-	width: 100%;
-	resize: none;
-}
-
-/* Ставим кнопку по центру */
-
-.content {
-	text-align: center;
-}
-
-/* Стили для нашей кнопки */
-
-button {
-  border-radius: 5px;
-  padding: 15px 25px;
-  font-size: 22px;
-  text-decoration: none;
-  margin: 20px;
-  color: #fff;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  border: 0;
-}
-
-button:active {
-  transform: translate(0px, 5px);
-  -webkit-transform: translate(0px, 5px);
-  box-shadow: 0px 1px 0px 0px;
-}
-
-button:focus {
-	outline: none !important
-}
-
-/* Стили для содержимого popup окна */
-
-input, textarea {
-	color: #494949;
-    border: 1px solid #e3e3e3;
-    border-radius: 3px;
-    background: #fff;
-    font-size: 14px;
-    margin: 0 0 10px;
-	padding: 5px;
-    width: 100%;
-	font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-}
-
-input:focus {
-	border-color: #808080;
-	outline: none;
-}
-
-textarea:focus {
-	border-color: #808080;
-	outline: none;
-}
-
-/* Кнопка */
-
-.blue_btn {
-  background-color: #55acee;
-  box-shadow: 0px 5px 0px 0px #3C93D5;
-}
-
-/* Окно */
-
-.overlay_popup {
-  transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
-	display:none;
-	position:fixed;
+	.modal {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(8, 0, 0, 0.8);
+	position: fixed;
+	top: 0;
 	z-index: 999;
-	top:0;
-	right:0; 
-	left:0;
-	bottom:0;
-	background:#000; 
-	opacity:0.5;
-  
-}
-
-.popup {
 	display: none;
-	position: relative;
-	z-index: 1000;
-	margin:0 25% 0 25%;
-	width:50%;
-  transition: opacity 1s linear, visibility 1s linear;
-}
+	opacity :0;
+	}
 
-/* Ещё немного стилей для popup окна */
+	.modal.active {
+	display: block;
+	opacity: 1;
+	transition: opacity 0.4s, visibility 0.4s;
+	}
 
-.object{
-	width: 500px;
-	height: 500px;
-	background-color: #eee;
-	padding: 50px 70px;
-}
+	.modal .inner_modal {
+	max-height: 100vh;
+	box-sizing: border-box;
+	display: block;
+	overflow-y: auto;
+	height: 100%;
+	width: 100%;
+	padding: 0 20px;
+	}
+
+	.modal .modal_content {
+	width: 600px;
+	max-width: 100%;
+	background-color:white;
+	display: block;
+	margin: 5vh auto;
+	padding: 50px;
+	}
 
 </style>
 <body>
-      
-	
-	<div class="content">
-
-		<button class="show_popup blue_btn" rel="popup1">Отправить письмо</button>
-
-
-	</div>
-	
-	<div class="overlay_popup"></div>
-
-	<div class="popup" id="popup1">
-		<div class="object">
-			<form action= "" method= ""> 
-				<p>Имя: </p>
-				<p><input type= "text" name= "name"></p> 
-				<p>E-mail: </p><p> <input type= "text" name= "email"></p> 
-				<p>Сообщение: </p>
-				<p><textarea rows= "10" cols= "45" name= "message"></textarea></p> 
-				<input type= "submit" value= "Отправить">
-			</form>
+	<div class="modal" id="example">
+		<div class="inner_modal">
+			<div class="modal_content">
+				<p>ВСЕМ ПРИВЕТ</p>
+			</div>
 		</div>
 	</div>
+	<button open-modal="true"
+	modal-id="example">
+	ВСПЛЫВАЮЩЕЕ ОКНО</button>
 
-
-	
-
-
-
-	
 	<script>
-   $('.show_popup').click(function() { // Вызываем функцию по нажатию на кнопку 
-    var popup_id = $('#' + $(this).attr("rel")); // Связываем rel и popup_id 
-    $(popup_id).show(); // Открываем окно
-    $('.overlay_popup').show(); // Открываем блок заднего фона
-    }) 
-    $('.overlay_popup').click(function() { // Обрабатываем клик по заднему фону
-        $('.overlay_popup, .popup').hide(); // Скрываем затемнённый задний фон и основное всплывающее окно
-        setTimeout(()=>{overllay_popup.sytyle.opacity = 5;},8);
-    });
-    
-  </script>
 
-       
+		function closeModal(modal) {
+		modal.removeClass('active');
+		}
+
+		function openModal(modal) {
+		modal.addClass('active');
+		}
+
+		$('*[open-modal="true"]').click(function() {
+		var modal = $(this).attr('modal-id');
+		openModal($(`.modal#${modal}`));
+			$(modal).fadeIn("slow");
+		});
+		13
+		
+		$('.modal').click(function(e) {
+		var clickTarget = $(e.target);
+		if (clickTarget.attr('class') =='inner_modal') {
+		closeModal(clickTarget.closest('.modal'));
+		}
+	
+		});
+	
+	</script>
 </body>
+
 </html>
