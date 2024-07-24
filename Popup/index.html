@@ -10,33 +10,30 @@
 		#par{display: none; 
 			text-align: center; 
 			width: 300px; 
-			height: 50px;
+			height: 300px;
 			border: 1px solid black;
 			background: red;
-			margin: 0;}
-			.but{
-				margin-top: 50px;
-				margin-bottom: 50px;
-			}
+			margin: 0;
+			margin-left: 50px;}
+		.hed{margin-top: 50px; margin-left: 50px;}	
 	</style>
 	<body>
-		<div class="but">
+		<div class="hed">
 			<button class="btn1">ЗАКРЫТЬ</button>
 			<button class="btn2">ОТКРЫТЬ</button>
-		</div>
-		<div class="prg">
 			<p id="par">ВСПЛЫВАЮЩЕЕ ОКНО</p>
 		</div>
 		<script>
 			$(document).ready(function(){
 			$(".btn1").click(function(){
-				$('#par').fadeOut();
+				$('#par').fadeOut("slow");
 			});
 			$(".btn2").click(function(){
 				$('#par').css('display', 'inline-block').hide().fadeIn("slow");
 				
 			});
 			});
+			
 		</script>
 	</body>
 </html>
