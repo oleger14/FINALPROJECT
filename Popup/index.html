@@ -6,82 +6,37 @@
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<style>
-	.modal {
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(8, 0, 0, 0.8);
-	position: fixed;
-	top: 0;
-	z-index: 999;
-	display: none;
-	opacity :0;
-	}
-
-	.modal.active {
-	display: block;
-	opacity: 1;
-	transition: opacity 0.4s, visibility 0.4s;
-	}
-
-	.modal .inner_modal {
-	max-height: 100vh;
-	box-sizing: border-box;
-	display: block;
-	overflow-y: auto;
-	height: 100%;
-	width: 100%;
-	padding: 0 20px;
-	}
-
-	.modal .modal_content {
-	width: 600px;
-	max-width: 100%;
-	background-color:white;
-	display: block;
-	margin: 5vh auto;
-	padding: 50px;
-	}
-
-</style>
-<body>
-	<div class="modal" id="example">
-		<div class="inner_modal">
-			<div class="modal_content">
-				<p>ВСЕМ ПРИВЕТ</p>
-			</div>
+	<style>
+		#par{display: none; 
+			text-align: center; 
+			width: 300px; 
+			height: 50px;
+			border: 1px solid black;
+			background: red;
+			margin: 0;}
+			.but{
+				margin-top: 50px;
+				margin-bottom: 50px;
+			}
+	</style>
+	<body>
+		<div class="but">
+			<button class="btn1">ЗАКРЫТЬ</button>
+			<button class="btn2">ОТКРЫТЬ</button>
 		</div>
-	</div>
-	<button open-modal="true"
-	modal-id="example">
-	ВСПЛЫВАЮЩЕЕ ОКНО</button>
-
-	<script>
-
-		function closeModal(modal) {
-		modal.removeClass('active');
-		}
-
-		function openModal(modal) {
-		modal.addClass('active');
-		}
-
-		$('*[open-modal="true"]').click(function() {
-		var modal = $(this).attr('modal-id');
-		openModal($(`.modal#${modal}`));
-			$(modal).fadeIn("slow");
-		});
-		13
-		
-		$('.modal').click(function(e) {
-		var clickTarget = $(e.target);
-		if (clickTarget.attr('class') =='inner_modal') {
-		closeModal(clickTarget.closest('.modal'));
-		}
-	
-		});
-	
-	</script>
-</body>
-
+		<div class="prg">
+			<p id="par">ВСПЛЫВАЮЩЕЕ ОКНО</p>
+		</div>
+		<script>
+			$(document).ready(function(){
+			$(".btn1").click(function(){
+				$('#par').fadeOut();
+			});
+			$(".btn2").click(function(){
+				$('#par').css('display', 'inline-block').hide().fadeIn("slow");
+				
+			});
+			});
+		</script>
+	</body>
 </html>
