@@ -21,15 +21,15 @@
 </head>
 <body>
     <div class="container">
-        <form method="post"> 
+        <form method="get"> 
             <div class="mb-3"> 
                 <label for="inputEmail" class="form-label">Email address</label>
-                <input type="email" name="Email" class="form-control" id="email" aria-describedby="emailHelp"> 
+                <input type="email" name="Email" class="form-control" id="emailInput" aria-describedby="emailHelp"> 
             </div>
             
             <div class="mb-3"> 
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" name="Password" class="form-control" id="password">
+                <input type="password" name="Password" class="form-control" id="inputPassword">
                 
             </div>
            
@@ -37,34 +37,36 @@
         </form>
     </div>
     <script>
-        function validateEmail() {
-        const email = document.getElementById("email");
-        email.addEventListener("input", () => {
-            if (email.validity.typeMismatch)
-              email.setCustomValidity("Неправильный ввод символов");
-            else
-                email.setCustomValidity("");
-        });
-    }
 
-        function validatePassword() {
-        const checkPassword = new RegExp('^[a-zA-Z0-9_.-]*$')
-        const stock = document.getElementById('password');
-        stock.addEventListener("input", () => {
-            console.log(checkPassword.exec(stock.value));
-            if (checkPassword.exec(stock.value) == null)
-                stock.setCustomValidity("В пароле недопустимые символы. Можно вводить a-zA-Z0-9_.-");
-            else {
-                if (stock.value.length >= 5)
-                    stock.setCustomValidity("");
-                else
-                    stock.setCustomValidity("Пароль должен быть больше 5 символов");
+            const emailInput = document.getElementById('emailInput');
+            const emailCheker = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            emailInput.addEventListener('input', () => {
+            const isValid = emailCheker.test(emailInput.value);
+            if (!isValid) {
+                emailInput.setCustomValidity('Введите корректный емайл адрес');
+            } else {
+                emailInput.setCustomValidity('');
             }
-        });
-    }
+            });
 
-        validateEmail();
-        validatePassword();
+        document.addEventListener('DOMContentLoaded', () =>
+        {
+            document.getElementById("inputPassword").addEventListener('input', e =>
+            {
+                if( e.target.value === '^[a-zA-Z0-9_.-]*$' )
+                {
+                    e.target.setCustomValidity('');
+                }
+                else
+                {
+                    e.target.setCustomValidity('Недопустимые символы, можно только - ^[a-zA-Z0-9_.-]*$');
+                   
+                }            
+            });
+        });
+
+   
     </script>
 </body>
 </html>
