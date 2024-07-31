@@ -36,37 +36,6 @@
             <button type="submit" class="btn btn-primary">Submit</button> 
         </form>
     </div>
-    <script>
-
-            const emailInput = document.getElementById('emailInput');
-            const emailCheker = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-            emailInput.addEventListener('input', () => {
-            const isValid = emailCheker.test(emailInput.value);
-            if (!isValid) {
-                emailInput.setCustomValidity('Введите корректный емайл адрес');
-            } else {
-                emailInput.setCustomValidity('');
-            }
-            });
-
-        document.addEventListener('DOMContentLoaded', () =>
-        {
-            document.getElementById("inputPassword").addEventListener('input', e =>
-            {
-                if( e.target.value === '^[a-zA-Z0-9_.-]*$' )
-                {
-                    e.target.setCustomValidity('');
-                }
-                else
-                {
-                    e.target.setCustomValidity('Недопустимые символы, можно только - ^[a-zA-Z0-9_.-]*$');
-                   
-                }            
-            });
-        });
-
-   
-    </script>
+    <script src="valid.js"> </script>
 </body>
 </html>
